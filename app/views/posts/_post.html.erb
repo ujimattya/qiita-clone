@@ -1,0 +1,13 @@
+<li id="post-<%= post.id %>">
+  <%= link_to gravatar_for(post.user, size: 50), post.user %>
+  
+  <span class="content"><%= link_to post.title, post_path %></span>
+  <span class="timestamp">
+    <%= link_to post.user.name, post.user %> が <%= post.created_at.to_s(:datetime_base) %> に投稿
+    <% if current_user?(post.user) %>
+      <%= link_to "delete", post, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+  </span>
+</li>
