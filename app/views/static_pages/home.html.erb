@@ -1,12 +1,26 @@
-<div class="center jumbotron">
-  <h1>Welcome to the Qiitonka</h1>
+  <div class="col-md-8">
+    
+    　<h3>投稿一覧 (<%= @posts.count %>)</h3>
+     <%= will_paginate @posts %>
 
-  <h2>
-    This is the home page for the
-    <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
-
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+      <ul class="users">
+        <% @posts.each do |post| %>
+          <li class="all-post">
+            <%= link_to gravatar_for(post.user, size: 50), post.user %>
+            <span class="content"><%= link_to post.title, post_path(post.user) %></span>
+            <span class="timestamp">
+              <%= link_to post.user.name, post.user %> が <%= post.created_at.to_s(:datetime_base) %> に投稿
+              <% if current_user?(post.user) %>
+                <%= link_to "消去", post, method: :delete,
+                                                 data: { confirm: "You sure?" } %>
+              <% end %>
+            </span>
+          </li>
+        <% end %>
+        
+      </ul>
+      
+      <%= will_paginate @posts %>
+   
+  </div>
 

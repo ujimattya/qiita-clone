@@ -5,9 +5,9 @@
   <span class="timestamp">
     <%= link_to post.user.name, post.user %> が <%= post.created_at.to_s(:datetime_base) %> に投稿
     <% if current_user?(post.user) %>
-      <%= link_to "delete", post, method: :delete,
+      <%= link_to "消去", post, method: :delete,
                                        data: { confirm: "You sure?" } %>
     <% end %>
   </span>
-  </span>
+  
 </li>

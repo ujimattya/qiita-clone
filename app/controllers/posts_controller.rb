@@ -12,7 +12,7 @@ class PostsController < ApplicationController
       flash[:success] = "記事を投稿しました"
       redirect_to root_url
     else
-      render 'static_pages/home'
+      render 'new'
     end
   end
   
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
       flash[:success] = "変更を保存しました"
       redirect_to root_url
     else
-      render 'static_pages/home'
+      render 'edit'
     end
   end
 
