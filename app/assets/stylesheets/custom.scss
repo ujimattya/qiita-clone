@@ -29,6 +29,9 @@ textarea {
   margin-bottom: 10px;
 }
 
+ul {
+  list-style: none;
+}
 /* header */
 
 .header{
@@ -217,3 +220,38 @@ span.picture {
   }
 }
 
+
+/* 検索ボックス */
+
+dl.searchbox{
+  width: 200px;
+  position:relative;
+  background-color:#fff;
+  border:1px solid #aaa;
+  border-radius:6px;
+  height:30px
+}
+dl.searchbox dt{
+  padding:2px;
+}
+dl.searchbox dt input{
+  width:70%;
+  height:10px;
+  line-height:10px;
+  background:none;
+  border:none;
+}
+
+dl.searchbox dd{
+  position:absolute;
+  top:1px;
+  right:1px;
+  width:30%;
+}
+.header-left{
+  float:left;
+}
+
+.search{
+  margin-left:60px;
+}

@@ -41,12 +41,15 @@ class PostsController < ApplicationController
   end
   
   def index
-       @users = User.paginate(page: params[:page] )
-       @posts = Post.paginate(page: params[:page] )
+    @users = User.paginate(page: params[:page] )
+    @posts = Post.paginate(page: params[:page] )
     if params[:tag_name]
       @posts = @posts.tagged_with("#{params[:tag_name]}")
       @users = User.paginate(page: params[:page] )
     end
+    
+    
+    
     
   end
 

@@ -7,10 +7,10 @@
      <%= will_paginate @posts %>
 
       <ul class="users">
-        <% @posts.each do |post| %>
+        <% @search_posts.each do |post| %>
           <li class="all-post">
             <%= link_to gravatar_for(post.user, size: 50), post.user %>
-            <span class="content"><%= link_to post.title, post %></span>
+            <span class="content"><%= link_to post.title, post, id: post.id %></span>
             <span class="timestamp">
               <%= link_to post.user.name, post.user %> が <%= post.created_at.to_s(:datetime_base) %> に投稿
               <% if current_user?(post.user) %>

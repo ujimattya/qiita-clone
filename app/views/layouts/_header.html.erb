@@ -1,6 +1,20 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "Qiitonka", root_path, id: "logo" %>
+    <ul class="header-left">
+      <li class="header-logo"><%= link_to "Qiitonka", root_path, id: "logo" %></li>
+      <li class="search">
+        <dl class="searchbox">
+          <%= search_form_for @search, url: posts_path do |f| %>
+            <dt><%= f.text_field :title_cont ,placeholder: '検索するテキストを入力...' %></dt>
+            <dd><%= f.submit ("検索") , class: 'search-btn'%></dd>
+          <% end %>
+        </dl>  
+      </li>
+    </ul>
+    
+    
+    
+    
     <nav>
       <ul class="nav navbar-nav navbar-right">
         
