@@ -41,16 +41,18 @@ class PostsController < ApplicationController
   end
   
   def index
-    @users = User.paginate(page: params[:page] )
+    
     @posts = Post.paginate(page: params[:page] )
+     
     if params[:tag_name]
-      @posts = @posts.tagged_with("#{params[:tag_name]}")
-      @users = User.paginate(page: params[:page] )
+      @search_posts = @posts.tagged_with("#{params[:tag_name]}")
     end
-    
-    
-    
-    
+  end
+  
+  def stocks
+    @posts = Post.paginate(page: params[:page] )
+    @user = User.find_by(id: current_user.id)
+    @stocks = Favorite.where(user_id: @user.id)
   end
 
   

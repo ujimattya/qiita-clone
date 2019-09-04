@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :favorites
+  has_many :users, through: :favorites
   acts_as_taggable
   acts_as_taggable_on :skills, :interests
   validates :user_id, presence: true
