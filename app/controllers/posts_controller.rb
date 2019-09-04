@@ -39,11 +39,21 @@ class PostsController < ApplicationController
       render 'edit'
     end
   end
+  
+  def index
+       @users = User.paginate(page: params[:page] )
+       @posts = Post.paginate(page: params[:page] )
+    if params[:tag_name]
+      @posts = @posts.tagged_with("#{params[:tag_name]}")
+      @users = User.paginate(page: params[:page] )
+    end
+    
+  end
 
   
   private
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :content, :user_id, :tag_list)
     end
     
     def correct_user

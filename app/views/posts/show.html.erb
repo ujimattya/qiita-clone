@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center mt-4 mb-4">
     <div class="ml-auto posts_button">
-        <%= link_to '投稿一覧', posts_path, class: "btn btn-outline-info" %>
+        <%= link_to '投稿一覧', root_path, class: "btn btn-outline-info" %>
         <%= link_to '編集', edit_post_path(@post), class: "btn btn-outline-info" %>
     </div>
 </div>
@@ -8,6 +8,13 @@
 <div class="card">
   <div class="card-header bg-info text-white">
       <h4><%= @post.title %></h4>
+      <span class="timestamp">
+        <%= link_to @post.user.name, user_path %> が <%= @post.created_at.to_s(:datetime_base) %> に投稿
+    
+      </span>
+      <% @post.tag_list.each do |tag| %>
+        <span class="label label-primary"><%= link_to tag, root_path(tag_name: tag)%></span>
+      <% end %>
   </div>
   <div class="card-body">
       <p class="card-text"><%= simple_format(@post.content) %></p>

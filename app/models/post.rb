@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
+  acts_as_taggable
+  acts_as_taggable_on :skills, :interests
   validates :user_id, presence: true
   validates :content, presence: true
   validates :title, presence: true, length: { maximum: 30 }

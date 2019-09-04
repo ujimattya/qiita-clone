@@ -10,7 +10,7 @@
         <% @posts.each do |post| %>
           <li class="all-post">
             <%= link_to gravatar_for(post.user, size: 50), post.user %>
-            <span class="content"><%= link_to post.title, post_path(post.user) %></span>
+            <span class="content"><%= link_to post.title, post %></span>
             <span class="timestamp">
               <%= link_to post.user.name, post.user %> が <%= post.created_at.to_s(:datetime_base) %> に投稿
               <% if current_user?(post.user) %>
@@ -26,4 +26,3 @@
       <%= will_paginate @posts %>
    
   </div>
-
