@@ -1,6 +1,6 @@
 <div class="col-md-8">
     
-    　<h3>ストック一覧 (<%= @posts.count %>)</h3>
+    　<h3>ストック一覧 </h3>
     　
     　
     　
@@ -8,12 +8,12 @@
 
       <ul class="users">
         <% @stocks.each do |stock| %>
-          <% post = Post.find_by(id: stock.post_id) %>
+          <% post = Post.find_by(id: stock.post_id) %> 
           <li class="all-post">
             <%= link_to gravatar_for(post.user, size: 50), post.user %>
             <span class="content"><%= link_to post.title, post, id: post.id %></span>
             <span class="timestamp">
-              <%= link_to post.user.name, post.user %> が <%= post.created_at.to_s(:datetime_base) %> に投稿
+              <%= link_to post.user.name, post.user %> が <%= post.created_at.to_s(:datetime_base) %> に投稿（<%= post.updated_at.to_s(:datetime_base) %>に更新）
               <% if current_user?(post.user) %>
                 <%= link_to "消去", post, method: :delete,
                                                  data: { confirm: "You sure?" } %>

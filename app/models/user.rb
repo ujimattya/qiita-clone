@@ -2,6 +2,7 @@ class User < ApplicationRecord
     attr_accessor :remember_token
     before_save { self.email = email.downcase }
     has_many :posts, dependent: :destroy
+    has_many :users, dependent: :destroy
     has_many :favorites
     has_many :favposts, through: :favorites, source: :post
     validates :name,  presence: true, length: { maximum: 50 }
@@ -10,8 +11,9 @@ class User < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
     has_secure_password
-    validates :password, presence: true, length: { minimum: 6 }
-    validates :profile, presence: true, length: { maximum: 160 }
+    validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+    validates :profile, length: { maximum: 160 }
+    default_scope -> { order(created_at: :desc) }
     
     def like(post)
       favorites.find_or_create_by(post_id: post.id)

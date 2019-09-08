@@ -5,10 +5,10 @@
   <div class="col-md-6 col-md-offset-3 login-container">
     <%= form_for(:session, url: login_path) do |f| %>
 
-      <%= f.label :email %>
+      <%= f.label :email,"Eメール" %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password %>
+      <%= f.label :password,"パスワード" %>
       <%= f.password_field :password, class: 'form-control' %>
       
       <%= f.label :remember_me, class: "checkbox inline" do %>
@@ -16,7 +16,7 @@
         <span>ログイン情報を保持しますか？</span>
       <% end %>
   
-      <%= f.submit "Log in", class: "btn btn-primary" %>
+      <%= f.submit "ログイン", class: "btn btn-success" %>
     <% end %>
 
     <p>アカウントをお持ちでない方は <%= link_to "こちら", signup_path %></p>

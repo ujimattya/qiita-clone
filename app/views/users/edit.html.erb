@@ -14,18 +14,14 @@
       <%= f.label :profile %>
       <%= f.text_area :profile,  class: 'form-control', placeholder: "160文字以内で入力" %> 
       
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
       
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
+      
+      <%= f.submit "変更する", class: "btn btn-success" %>
     <% end %>
 
     <div class="gravatar_edit">
       <%= gravatar_for @user %>
-      <a href="http://gravatar.com/emails" target="_blank">change</a>
+      <a href="http://gravatar.com/emails" target="_blank">画像の変更</a>
     </div>
   </div>
 </div>

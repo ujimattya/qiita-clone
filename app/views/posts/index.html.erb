@@ -12,12 +12,13 @@
             <%= link_to gravatar_for(post.user, size: 50), post.user %>
             <span class="content"><%= link_to post.title, post, id: post.id %></span>
             <span class="timestamp">
-              <%= link_to post.user.name, post.user %> が <%= post.created_at.to_s(:datetime_base) %> に投稿
-              <% if current_user?(post.user) %>
-                <%= link_to "消去", post, method: :delete,
-                                                 data: { confirm: "You sure?" } %>
-              <% end %>
+              <%= link_to post.user.name, post.user %> が <%= post.created_at.to_s(:datetime_base) %> に投稿（<%= post.updated_at.to_s(:datetime_base) %>に更新）
+              
             </span>
+            <% if current_user?(post.user) %>
+                <%= link_to "消去", post, method: :delete,
+                                                 data: { confirm: "本当に消しますか?" } %>
+            <% end %>
           </li>
         <% end %>
         

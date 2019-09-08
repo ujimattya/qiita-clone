@@ -1,7 +1,13 @@
 <div class="d-flex align-items-center mt-4 mb-4">
     <div class="ml-auto posts_button">
         <%= link_to '投稿一覧', root_path, class: "btn btn-outline-info" %>
-        <%= link_to '編集', edit_post_path(@post), class: "btn btn-outline-info" %>
+        <% if logged_in? && current_user?(@post.user) %>
+          <%= link_to '編集', edit_post_path(@post), class: "btn btn-outline-info" %>
+        <% end %>
+        <% if current_user?(@post.user) %>
+              <%= link_to "消去", @post, method: :delete,
+                                                 data: { confirm: "本当に消しますか?" } %>
+        <% end %>
     </div>
 </div>
 
@@ -9,11 +15,11 @@
   <div class="card-header bg-info text-white">
       <h4><%= @post.title %></h4>
       <span class="timestamp">
-        <%= link_to @post.user.name, user_path(@post.user) %> が <%= @post.created_at.to_s(:datetime_base) %> に投稿
+        <%= link_to @post.user.name, user_path(@post.user) %> が <%= @post.created_at.to_s(:datetime_base) %> に投稿（<%= @post.updated_at.to_s(:datetime_base) %>に更新）
     
       </span>
       <% @post.tag_list.each do |tag| %>
-        <span class="label label-primary"><%= link_to tag, root_path(tag_name: tag)%></span>
+        <span class="label label-primary tag"><%= link_to tag, root_path(tag_name: tag)%></span>
       <% end %>
   </div>
   <div class="card-body">
@@ -21,7 +27,17 @@
   </div>
   <div class="card-footer">
     
-    <p class="text-right font-weight-bold mr-10"><%= @post.user.name %></p>
+    
     <%= render 'favorites/stock_button', post: @post %>
   </div>
+  
+    <div class="p-comment_list">
+    <div class="p-comment_listTitle">コメント</div>
+      <%= render @comments %>
+    </div>
+  
+    <div>
+      <%= render partial: 'comments/form', locals: { comment: @comment } %>
+    </div>
+  
 </div>

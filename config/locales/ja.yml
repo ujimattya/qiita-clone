@@ -215,3 +215,12 @@ ja:
         name: ユーザー名
         email: Eメール
         password: パスワード
+        profile: プロフィール
+      comment:
+        name: 名前
+        comment: コメント
+  will_paginate:
+    previous_label: "前"
+    next_label: "次"
+    page_gap: "…"
+  

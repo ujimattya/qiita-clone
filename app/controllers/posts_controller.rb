@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :logged_in_user, only: [:create, :destroy,:edit,:update]
+  before_action :correct_user,   only: [:destroy,:edit,:update]
   
   def new
     @post = Post.new
@@ -17,13 +17,19 @@ class PostsController < ApplicationController
   end
   
   def destroy
+    @post = Post.find(params[:id])
     @post.destroy
     flash[:success] = "記事が消去されました"
-    redirect_to request.referrer || root_url
+    redirect_to root_url
   end
   
   def show
     @post = Post.find(params[:id])
+    # if logged_in?
+    #   @user = User.find_by(id: current_user.id)
+       @comments = @post.comments
+       @comment = Comment.new(post_id: @post.id)
+    # end
   end
   
   def edit

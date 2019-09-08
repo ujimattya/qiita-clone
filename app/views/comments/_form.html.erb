@@ -1,0 +1,16 @@
+
+<% if logged_in? %>
+  <div class="p-comment__formBox">
+    <p class="p-comment__formTitle">コメント記入</p>
+    <%= form_for comment do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= f.hidden_field :post_id %>
+
+      <div class="form-group">
+        <%= f.label :comment, 'コメント' %>
+        <%= f.text_area :comment, class: 'form-control', rows: 4 %>
+      </div>
+      <%= f.submit '送信', class: 'btn btn-info btn-block' %>
+    <% end %>
+  </div>
+<%end%>

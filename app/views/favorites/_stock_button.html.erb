@@ -1,13 +1,15 @@
-<% if current_user.present? || current_user.id != post.user_id %>
-  <% if current_user.favpost?(post) %>
-    <%= form_for(current_user.favorites.find_by(post_id: post.id), html: { method: :delete }) do |f| %>
-      <%= hidden_field_tag :post_id, post.id %>
-      <%= f.submit 'スタックする', class: 'btn btn-danger' %>
-    <% end %>
-  <% else %>
-    <%= form_for(current_user.favorites.build) do |f| %>
-      <%= hidden_field_tag :post_id, post.id %>
-      <%= f.submit 'スタックから外す', class: 'btn btn-primary' %>
+<% if logged_in? %>
+  <%if current_user.id != post.user_id %>
+    <% if current_user.favpost?(post) %>
+      <%= form_for(current_user.favorites.find_by(post_id: post.id), html: { method: :delete }) do |f| %>
+        <%= hidden_field_tag :post_id, post.id %>
+        <%= f.submit 'ストック解除', class: 'btn btn-danger stack' %>
+      <% end %>
+    <% else %>
+      <%= form_for(current_user.favorites.build) do |f| %>
+        <%= hidden_field_tag :post_id, post.id %>
+        <%= f.submit 'ストックする', class: 'btn btn-primary stack' %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

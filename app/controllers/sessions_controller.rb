@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       remember user
       redirect_back_or user
     else
-      flash.now[:danger] = 'Invalid email/password combination'
+      flash.now[:danger] = '入力に誤りがあります。'
       render 'new'
     end
   end
